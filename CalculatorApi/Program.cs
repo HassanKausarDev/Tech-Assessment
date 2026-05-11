@@ -2,8 +2,6 @@ using CalculatorLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddScoped<ISimpleCalculator, SimpleCalculator>();
 
 builder.Services.AddControllers();
@@ -22,11 +20,10 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
-
 app.UseCors("AllowFrontend");
+
+//app.UseHttpsRedirection(); // Removed this as was unable to make a call with it being HTTPS.
+
 app.UseAuthorization();
 
 app.MapControllers();
